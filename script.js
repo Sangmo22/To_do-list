@@ -6,9 +6,16 @@ $(document).ready(function () {
       return;
     }
 
+    const dateLabel = new Date().toLocaleDateString([], {
+      dateStyle: "medium",
+    });
+
     const listItem = $(`
       <li>
-        <span class="task-text"></span>
+        <div class="task-content">
+          <span class="task-text"></span>
+          <small class="task-date"></small>
+        </div>
         <div class="task-actions">
           <label class="complete-toggle" aria-label="Mark task complete">
             <input class="complete-checkbox" type="checkbox" />
@@ -23,8 +30,10 @@ $(document).ready(function () {
     `);
 
     listItem.find(".task-text").text(taskText);
+    listItem.find(".task-date").text(dateLabel);
     $("#todoList").append(listItem);
-    $("#todoInput").val("").focus();
+    $("#todoInput").val("");
+    $("#todoInput").focus();
   }
 
   $("#addBtn").on("click", addTask);
