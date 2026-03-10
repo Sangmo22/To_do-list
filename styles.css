@@ -63,3 +63,35 @@ h1 {
   padding: 10px;
   margin-bottom: 8px;
 }
+
+.task-text {
+  cursor: pointer;
+}
+
+.done {
+  text-decoration: line-through;
+  color: #8b949e;
+}
+
+.task-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.complete-btn {
+  background: #2e7d32;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background: #e53935;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
