@@ -76,14 +76,17 @@ h1 {
 .task-actions {
   display: flex;
   gap: 6px;
+  align-items: center;
 }
 
-.complete-btn {
-  background: #2e7d32;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 6px 10px;
+.complete-toggle {
+  display: inline-flex;
+  align-items: center;
+}
+
+.complete-checkbox {
+  width: 18px;
+  height: 18px;
   cursor: pointer;
 }
 
@@ -92,6 +95,21 @@ h1 {
   color: #fff;
   border: none;
   border-radius: 6px;
-  padding: 6px 10px;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #c62828;
+}
+
+.delete-icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
 }

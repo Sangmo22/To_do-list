@@ -10,8 +10,14 @@ $(document).ready(function () {
       <li>
         <span class="task-text"></span>
         <div class="task-actions">
-          <button class="complete-btn" type="button">Complete</button>
-          <button class="delete-btn" type="button">Delete</button>
+          <label class="complete-toggle" aria-label="Mark task complete">
+            <input class="complete-checkbox" type="checkbox" />
+          </label>
+          <button class="delete-btn" type="button" aria-label="Delete task">
+            <svg class="delete-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M9 3h6l1 2h4v2H4V5h4l1-2zm1 6h2v9h-2V9zm4 0h2v9h-2V9zM7 9h2v9H7V9z"></path>
+            </svg>
+          </button>
         </div>
       </li>
     `);
@@ -29,13 +35,10 @@ $(document).ready(function () {
     }
   });
 
-  $("#todoList").on("click", ".complete-btn", function () {
+  $("#todoList").on("change", ".complete-checkbox", function () {
     const listItem = $(this).closest("li");
     const taskText = listItem.find(".task-text");
-    const isCompleted = taskText.hasClass("done");
-
-    taskText.toggleClass("done", !isCompleted);
-    $(this).text(isCompleted ? "Complete" : "Undo");
+    taskText.toggleClass("done", $(this).is(":checked"));
   });
 
   $("#todoList").on("click", ".delete-btn", function () {
