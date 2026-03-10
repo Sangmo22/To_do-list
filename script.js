@@ -33,6 +33,11 @@ $(document).ready(function () {
             <label class="complete-toggle" aria-label="Mark task complete">
               <input class="complete-checkbox" type="checkbox" />
             </label>
+            <button class="edit-btn" type="button" aria-label="Edit task">
+              <svg class="edit-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M3 17.25V21h3.75L17.8 9.94l-3.75-3.75L3 17.25zm17.71-10.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"></path>
+              </svg>
+            </button>
             <button class="delete-btn" type="button" aria-label="Delete task">
               <svg class="delete-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path d="M9 3h6l1 2h4v2H4V5h4l1-2zm1 6h2v9h-2V9zm4 0h2v9h-2V9zM7 9h2v9H7V9z"></path>
@@ -106,6 +111,71 @@ $(document).ready(function () {
 
     tasks.splice(taskIndex, 1);
     saveTasks();
+    renderTasks();
+  });
+
+  $("#todoList").on("click", ".edit-btn", function () {
+    const listItem = $(this).closest("li");
+    const taskIndex = Number(listItem.data("index"));
+
+    if (Number.isNaN(taskIndex) || !tasks[taskIndex]) {
+      return;
+    }
+
+    const taskText = listItem.find(".task-text");
+    if (!taskText.length) {
+      return;
+    }
+
+    const editInput = $("<input>", {
+      type: "text",
+      class: "edit-input",
+      value: tasks[taskIndex].text,
+      "aria-label": "Edit task text",
+    });
+
+    taskText.replaceWith(editInput);
+    editInput.focus().select();
+  });
+
+  $("#todoList").on("keydown", ".edit-input", function (event) {
+    const listItem = $(this).closest("li");
+    const taskIndex = Number(listItem.data("index"));
+
+    if (Number.isNaN(taskIndex) || !tasks[taskIndex]) {
+      return;
+    }
+
+    if (event.key === "Enter") {
+      const updatedText = $(this).val().trim();
+      if (!updatedText) {
+        return;
+      }
+
+      tasks[taskIndex].text = updatedText;
+      saveTasks();
+      renderTasks();
+    }
+
+    if (event.key === "Escape") {
+      renderTasks();
+    }
+  });
+
+  $("#todoList").on("blur", ".edit-input", function () {
+    const listItem = $(this).closest("li");
+    const taskIndex = Number(listItem.data("index"));
+
+    if (Number.isNaN(taskIndex) || !tasks[taskIndex]) {
+      return;
+    }
+
+    const updatedText = $(this).val().trim();
+    if (updatedText) {
+      tasks[taskIndex].text = updatedText;
+      saveTasks();
+    }
+
     renderTasks();
   });
 

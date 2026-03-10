@@ -104,6 +104,24 @@ h1 {
   cursor: pointer;
 }
 
+.edit-btn {
+  background: #5ea0ef;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background: #3e83d5;
+}
+
 .delete-btn {
   background: #e77f7d;
   color: #fff;
@@ -126,4 +144,19 @@ h1 {
   width: 16px;
   height: 16px;
   fill: currentColor;
+}
+
+.edit-icon {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+.edit-input {
+  width: 100%;
+  max-width: 300px;
+  padding: 6px 8px;
+  border: 1px solid #6da8ef;
+  border-radius: 6px;
+  font-size: 16px;
 }
